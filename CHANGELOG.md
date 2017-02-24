@@ -2,6 +2,10 @@
 
 ## Upcoming
 
+## v0.18.0-pre.11 [02-24-2017]
+
+- Updated polymer-analyzer, adding nitial support for mixins and namespaces to the analye command.
+
 ## v0.18.0-pre.10 [02-21-2017]
 
 - **New `build` Behavior**: New build options have been added to give you more control over the generated build. These options can be defined in your project's `polymer.json`, or via CLI flags. Run `polymer build --help` to see a list of new supported CLI flags.
