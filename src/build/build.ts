@@ -16,7 +16,7 @@ import * as path from 'path';
 import * as logging from 'plylog';
 import {dest} from 'vinyl-fs';
 import mergeStream = require('merge-stream');
-import {PolymerProject, addServiceWorker, SWConfig, HtmlSplitter} from 'polymer-build';
+import {PolymerProject, addServiceWorker, addPushManifest, SWConfig, HtmlSplitter} from 'polymer-build';
 
 import {OptimizeOptions, getOptimizeStreams} from './optimize-streams';
 import {ProjectConfig, ProjectBuildOptions} from 'polymer-project-config';
@@ -111,6 +111,17 @@ export async function build(
       buildRoot: buildDirectory,
       project: polymerProject,
       swPrecacheConfig: swConfig || undefined,
+      bundled: options.bundle,
+    });
+  }
+
+  // addServiceWorker() reads from the file system, so we need to wait for
+  // the build stream to finish writing to disk before calling it.
+  if (options.addPushManifest) {
+    logger.debug(`Generating push manifest...`);
+    await addPushManifest({
+      buildRoot: buildDirectory,
+      project: polymerProject,
       bundled: options.bundle,
     });
   }
