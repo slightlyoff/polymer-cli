@@ -18,10 +18,15 @@
     "outDir": "lib",
     "rootDir": "src",
     "sourceMap": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+        "*": [ "node_modules/@types/*", "node_modules/polymer-build/node_modules/*", "*"]
+    }
   },
   "include": [
     "custom_typings/**/*.ts",
+    "custom_typings/*.ts",
     "src/**/*.ts"
   ]
 }

@@ -125,14 +125,12 @@ export async function build(
 
   // addServiceWorker() reads from the file system, so we need to wait for
   // the build stream to finish writing to disk before calling it.
-  if (options.addPushManifest) {
-    logger.debug(`Generating push manifest...`);
-    await addPushManifest({
-      buildRoot: buildDirectory,
-      project: polymerProject,
-      bundled: options.bundle,
-    });
-  }
+  logger.debug(`Generating push manifest...`);
+  await addPushManifest({
+    buildRoot: buildDirectory,
+    project: polymerProject,
+    bundled: options.bundle,
+  });
 
   logger.info(`(${buildName}) Build complete!`);
 }
